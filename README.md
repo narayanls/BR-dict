@@ -2,6 +2,10 @@
 
 Dicionário de português do Brasil para o desktop Linux, feito em GTK4/libadwaita e baseado no [Wikcionário](https://pt.wiktionary.org).
 
+<img width="590" height="625" alt="satty-20261119-132303" src="https://github.com/user-attachments/assets/eb2daa51-8e6b-49f7-9121-bc5c7fd80c3d" /> <img width="593" height="629" alt="satty-20261119-132400" src="https://github.com/user-attachments/assets/cf428cbc-af6a-4974-a2c2-8cb6f46748e3" />
+
+
+
 O BR-dict é uma alternativa ao **GNOME Dicionário** (`gnome-dictionary`) para quem precisa consultar palavras em português. O GNOME Dicionário depende de servidores DICT, que praticamente não têm conteúdo em português. O BR-dict busca as definições direto no Wikcionário em português e se integra ao visual do GNOME.
 
 ## Recursos
