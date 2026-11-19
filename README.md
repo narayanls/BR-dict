@@ -30,14 +30,6 @@ sudo pacman -U br-dict-*-any.pkg.tar.zst
 
 Depois disso, as próximas versões podem ser instaladas pelo próprio app.
 
-### Compilando o pacote
-
-```sh
-git clone https://github.com/narayanls/BR-dict.git
-cd BR-dict/pkgbuild
-makepkg -si
-```
-
 ### Rodando direto do código-fonte
 
 Instale as dependências (`python`, `python-gobject`, `gtk4` e `libadwaita` 1.5 ou mais recente) e rode:
@@ -86,16 +78,6 @@ A instalação automática precisa do `pacman` e do `pkexec` (polkit). Em outros
 | `~/.cache/br-dict/cache.db` | Cache das palavras consultadas (pode ser limpo pelo menu) |
 | `~/.local/share/br-dict/offline.db` | Banco do modo offline |
 | `~/.cache/br-dict/updates/` | Pacote baixado durante uma atualização (é apagado depois de instalado) |
-
-## Publicando uma nova versão
-
-O atualizador lê o último release do GitHub e procura um pacote anexado com o nome no formato `br-dict-<pkgver>-<pkgrel>-any.pkg.tar.zst`, que é o nome que o `makepkg` gera. Para publicar uma versão:
-
-1. Atualize o `pkgver` (ou o `pkgrel`) em `pkgbuild/PKGBUILD` e a constante `VERSION` em `usr/share/br-dict/core/__init__.py`.
-2. Gere o pacote com `makepkg` dentro de `pkgbuild/`.
-3. Crie um release no GitHub com a tag `v<pkgver>` (por exemplo, `v0.2.0`), escreva as novidades na descrição e anexe o arquivo `.pkg.tar.zst`.
-
-Rascunhos e pré-lançamentos são ignorados pelo atualizador. A descrição do release aparece no app como "Novidades".
 
 ## Licença
 
