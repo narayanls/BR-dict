@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Application
+Name=BR-dict
+GenericName=Dicionário
+Comment=Dicionário de português do Brasil
+Exec=br-dict
+Icon=io.github.narayanls.br-dict
+Terminal=false
+Categories=Office;Dictionary;GTK;GNOME;
+Keywords=dicionário;significado;palavra;português;sinônimo;dictionary;
+StartupNotify=true

@@ -1,0 +1,31 @@
+# Maintainer: narayanls <https://github.com/narayanls>
+
+pkgname=br-dict
+pkgver=0.1.1
+pkgrel=1
+pkgdesc="Dicionário de português do Brasil baseado no Wikcionário (GTK4/libadwaita)"
+arch=('any')
+url="https://github.com/narayanls/BR-dict"
+license=('GPL-3.0-or-later')
+depends=('python' 'python-gobject' 'gtk4' 'libadwaita')
+
+# Build local: usa os arquivos do próprio repositório (pasta acima de pkgbuild/).
+# Quando publicar no GitHub, troque por:
+#   source=("$pkgname-$pkgver.tar.gz::$url/archive/refs/tags/v$pkgver.tar.gz")
+#   sha256sums=('...')
+# e use cd "$srcdir/BR-dict-$pkgver" no package().
+source=()
+sha256sums=()
+
+package() {
+  cd "$startdir/.."
+
+  install -Dm755 usr/bin/br-dict -t "$pkgdir/usr/bin/"
+  install -Dm644 usr/share/applications/io.github.narayanls.br-dict.desktop \
+    -t "$pkgdir/usr/share/applications/"
+  install -Dm644 usr/share/icons/hicolor/scalable/apps/io.github.narayanls.br-dict.svg \
+    -t "$pkgdir/usr/share/icons/hicolor/scalable/apps/"
+
+  cd usr/share/br-dict
+  find . -type f -name '*.py' -exec install -Dm644 {} "$pkgdir/usr/share/br-dict/{}" \;
+}
