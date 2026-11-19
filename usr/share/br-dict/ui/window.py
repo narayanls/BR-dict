@@ -66,6 +66,7 @@ class BrDictWindow(Adw.ApplicationWindow):
         section = Gio.Menu()
         section.append("Modo offline…", "app.offline")
         section.append("Limpar cache", "app.clear-cache")
+        section.append("Verificar atualizações", "app.check-updates")
         section.append("Sobre o BR-dict", "app.about")
         menu.append_section(None, section)
         header.pack_end(
@@ -127,8 +128,8 @@ class BrDictWindow(Adw.ApplicationWindow):
         self.search.grab_focus()
         self.search.select_region(0, -1)
 
-    def toast(self, text: str):
-        self.toasts.add_toast(Adw.Toast(title=text, timeout=3))
+    def toast(self, text: str, timeout: int = 3):
+        self.toasts.add_toast(Adw.Toast(title=text, timeout=timeout))
 
     # ------------------------------------------------------------ consulta
 

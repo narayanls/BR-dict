@@ -2,5 +2,5 @@
 
 APP_ID = "io.github.narayanls.br-dict"
 APP_NAME = "BR-dict"
-VERSION = "0.1.0"
+VERSION = "0.1.1"  # manter igual ao pkgver do PKGBUILD
 WEBSITE = "https://github.com/narayanls/BR-dict"

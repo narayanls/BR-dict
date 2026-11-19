@@ -12,10 +12,11 @@ gi.require_version("Gtk", "4.0")
 gi.require_version("Adw", "1")
 from gi.repository import Adw, Gio, GLib, Gtk  # noqa: E402
 
-from core import APP_ID, APP_NAME, VERSION, WEBSITE  # noqa: E402
+from core import APP_ID, APP_NAME, WEBSITE, updater  # noqa: E402
 from core.dictionary import Dictionary  # noqa: E402
 from core.offline import Builder  # noqa: E402
 from ui.offline_dialog import OfflineDialog  # noqa: E402
+from ui.updates import UpdateController  # noqa: E402
 from ui.window import BrDictWindow  # noqa: E402
 
 
@@ -26,6 +27,7 @@ class BrDictApp(Adw.Application):
         self.initial_word = initial_word
         self.dictionary = None
         self.builder = None  # geração do banco offline em andamento
+        self.updates = UpdateController(self)
 
     def do_startup(self):
         Adw.Application.do_startup(self)
@@ -34,6 +36,7 @@ class BrDictApp(Adw.Application):
 
         for name, callback in (
             ("about", self._on_about),
+            ("check-updates", lambda *a: self.updates.check(manual=True)),
             ("clear-cache", self._on_clear_cache),
             ("offline", self._on_offline),
             ("quit", lambda *a: self.quit()),
@@ -52,6 +55,7 @@ class BrDictApp(Adw.Application):
         if self.initial_word:
             window.lookup(self.initial_word)
             self.initial_word = None
+        self.updates.schedule_auto_check()
 
     def _on_clear_cache(self, *_):
         self.dictionary.clear_cache()
@@ -86,7 +90,7 @@ class BrDictApp(Adw.Application):
         about = Adw.AboutDialog(
             application_name=APP_NAME,
             application_icon=APP_ID,
-            version=VERSION,
+            version=updater.display_version(updater.installed_version()),
             developer_name="narayanls",
             website=WEBSITE,
             issue_url=WEBSITE + "/issues",
@@ -100,7 +104,9 @@ class BrDictApp(Adw.Application):
 def main() -> int:
     word = " ".join(a for a in sys.argv[1:] if not a.startswith("-")) or None
     app = BrDictApp(initial_word=word)
-    return app.run([sys.argv[0]])
+    status = app.run([sys.argv[0]])
+    app.updates.relaunch_if_requested()
+    return status
 
 
 if __name__ == "__main__":
