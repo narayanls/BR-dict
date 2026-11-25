@@ -84,7 +84,7 @@ A instalação automática precisa do `pacman` e do `pkexec` (polkit). Em outros
 - [Python 3](https://www.python.org) + [PyGObject](https://pygobject.gnome.org)
 - [GTK4](https://gtk.org) + [Adwaita (libadwaita)](https://gnome.pages.gitlab.gnome.org/libadwaita/)
 - Vibe Coding:
-  Claude Sonnet foi usada para geração de código. O programa foi revisado e testado por humanos.
+  Claude Opus foi usada para geração de código. O programa foi revisado e testado por humanos.
 ---
 
 ## Licença
